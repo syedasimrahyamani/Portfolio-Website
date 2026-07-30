@@ -334,18 +334,17 @@ body {
 }
 
 /* ============ ABOUT ============ */
+
 .about {
     padding: 100px 10%;
     background: var(--soft-bg);
 }
 
-@media (max-width: 600px) {
 .about-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 24px;
   margin-top: 30px;
-  grid-template-columns: 1fr;
 }
 
 .about-box {
@@ -377,6 +376,13 @@ body {
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 8px;
+}
+
+/* Mobile-only override: force single column on small screens */
+@media (max-width: 600px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============ SKILLS ============ */
@@ -548,13 +554,35 @@ body {
     background: white;
 }
 
+.contact-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contact-heading h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-heading p {
+    color: #777;
+    font-size: 15px;
+}
+
 .contact-form {
     max-width: 700px;
     margin: 0 auto;
     background: var(--soft-bg);
     padding: 45px;
     border-radius: 20px;
+    border-top: 4px solid var(--accent-2);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: box-shadow .3s ease;
+}
+
+.contact-form:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 .form-row {
@@ -585,19 +613,43 @@ body {
     resize: none;
     background: white;
     outline: none;
-    transition: border-color .3s ease;
+    transition: border-color .3s ease, box-shadow .3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--accent-2);
+    box-shadow: 0 0 0 4px rgba(var(--accent-2-rgb, 0, 0, 0), 0.12);
 }
 
 .contact-form .btn {
     width: 100%;
     margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-1, var(--accent-2)));
+    color: white;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
 
+.contact-form .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.contact-form .btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
 /* ============ FOOTER ============ */
 .footer {
     padding: 50px 10% 30px;
